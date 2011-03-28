@@ -19,6 +19,12 @@ public class GradingStrategy extends RobotStrategy
 		return avgError;
 	}
 
+	public void initializeBeliefState(int x, int y) {
+		mapChild.initializeBeliefState(x, y);
+		myChild.initializeBeliefState(x, y);
+	}
+
+	
 	public GradingStrategy() 
 	{
 		mapChild = new MAPRobotStrategy();
@@ -84,7 +90,6 @@ public class GradingStrategy extends RobotStrategy
 	}
 	
 	public Order giveOrder(){
-		myChild.giveOrder();
 		return mapChild.giveOrder();		
 	}
 

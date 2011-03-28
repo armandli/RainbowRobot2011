@@ -3,8 +3,6 @@ import java.util.Random;
 /**
  * Class used test the correctness of belief state updates.
  * 
- * 
- *
  * @author vasanth
  *
  */
@@ -33,12 +31,6 @@ public class UpdateTester {
 	public static void main(String argv[]) throws Exception{
 		
 		rand = new Random();
-		
-		// You can comment out the following line (or put in arbitrary
-		// seeds) to test for other initial states.
-		rand.setSeed(2);
-		
-		
 		robotStrategies = new RobotStrategy[2];
 		robots = new Robot[2];
 		
@@ -56,6 +48,9 @@ public class UpdateTester {
 			startY2 = rand.nextInt(6);
 			if((Math.abs(startX1-startX2)+Math.abs(startY1-startY2))>=1) break;
 		}
+		robotStrategies[0].initializeBeliefState(startX1, startY1);
+		robotStrategies[1].initializeBeliefState(startX2, startY2);
+
 
 		// intialize robots
 		robots[0] = new Robot(1, startX1, startY1);
