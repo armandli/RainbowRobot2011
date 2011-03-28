@@ -9,7 +9,7 @@ import javax.management.RuntimeErrorException;
 public class GradingStrategy extends RobotStrategy 
 {
 	private RobotStrategy mapChild;
-	private RobotStrategy myChild;
+	public RobotStrategy myChild;
 
 	private double error = 0;
 	private double avgError = 0;

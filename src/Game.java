@@ -658,6 +658,9 @@ public class Game extends Canvas implements Runnable{
 
 			if (gameOver) {
 //				sleep(finalStep);
+				MyRobotStrategy gs = (MyRobotStrategy)robotStrategies[0];
+				//System.out.println("possible red="+gs.num_red);
+				//System.out.println("possible yellow="+gs.num_yellow);
 				return returnCode();
 			}
 

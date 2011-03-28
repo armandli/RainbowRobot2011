@@ -10,6 +10,8 @@ public class MyRobotStrategy extends RobotStrategy {
 	// walking vector in the order of SWNE
 	static final int walk_vector[][] = {{0,1},{-1,0},{0,-1},{1,0}};
 	int num_red, num_yellow;
+	public int red_shots, yellow_shots;
+	double most_probable;
 	
 	Random rand = new Random();
 		
@@ -24,6 +26,8 @@ public class MyRobotStrategy extends RobotStrategy {
 		super();
 		num_red = 1;
 		num_yellow = 2;
+		most_probable = 0.0;
+		red_shots = yellow_shots = 0;
 	}
 	
 	void printBeliefState(){
@@ -93,6 +97,8 @@ public class MyRobotStrategy extends RobotStrategy {
 				beliefState[i][j] = prob_x[i][j];
 				for (int k = 0; k < 4; ++k)
 					beliefState[i][j] *= cond_s_p[k][i][j];
+				if (beliefState[i][j] > most_probable)
+					most_probable = beliefState[i][j];
 			}
 
 		//double sum = 0.0;
@@ -176,7 +182,11 @@ public class MyRobotStrategy extends RobotStrategy {
 	
 	//strategy 2: a variant of MAP, but we throw special attack when higher than x confidence
 	Order giveMAPSpecialOrder(){
-		double threshold_red = 0.85, threshold_yellow = 0.73;
+		double threshold_red = 0.75, threshold_yellow = 0.40;
+		if (most_probable >= 0.87)
+			red_shots++;
+		else if (most_probable >= 0.73)
+			yellow_shots++;
 		int bestx = 0, besty = 0;
 		for (int i = 0; i < w; ++i)
 			for (int j = 0; j < h; ++j)
