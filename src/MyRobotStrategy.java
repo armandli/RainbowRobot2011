@@ -19,7 +19,7 @@ public class MyRobotStrategy extends RobotStrategy {
 	 * Rename your bot as you please. This name will show up in the GUI.
 	 */
 	public String getName() { 
-		return "RandoBot"; 
+		return "Bayes' Bender"; 
 	}
 	
 	public MyRobotStrategy(){
